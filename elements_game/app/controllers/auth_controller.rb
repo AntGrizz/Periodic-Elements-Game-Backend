@@ -1,7 +1,9 @@
+require "byebug"
+
 class AuthController < ApplicationController
 
   def create
-  # byebug
+  byebug
   @user = User.find_by(username: params[:username])
    if @user && @user.authenticate(params[:password])
      #username is found AND password matches
@@ -11,7 +13,7 @@ class AuthController < ApplicationController
        message: "Authenticated! You are logged in",
        authenticated: true,
        # user: @user.user_items_serializer,
-       token: token
+       # token: token
      }, status: :accepted
    else
      #username could not be found OR password is incorrect

@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create(username: "test", first_name: "Test", last_name: "Test")
+User.create(username: "Aaron", password: "password1", first_name: "Aaron", last_name: "Gregg")
 Score.create(user_id: 1, mode: "Quiz", correct: 18, total: 20)
 Score.create(user_id: 1, mode: "Quiz", correct: 15, total: 20)
 Score.create(user_id: 1, mode: "Quiz", correct: 20, total: 20)
