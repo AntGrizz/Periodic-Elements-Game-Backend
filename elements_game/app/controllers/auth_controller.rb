@@ -3,7 +3,7 @@ require "byebug"
 class AuthController < ApplicationController
 
   def create
-  byebug
+  # byebug
   @user = User.find_by(username: params[:username])
    if @user && @user.authenticate(params[:password])
      #username is found AND password matches
@@ -12,8 +12,8 @@ class AuthController < ApplicationController
      render json: {
        message: "Authenticated! You are logged in",
        authenticated: true,
-       # user: @user.user_items_serializer,
-       # token: token
+       user: @user.login,
+       token: token
      }, status: :accepted
    else
      #username could not be found OR password is incorrect
