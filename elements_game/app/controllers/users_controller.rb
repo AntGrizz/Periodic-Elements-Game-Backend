@@ -6,11 +6,27 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.create(user_params)
+    @user = User.create(user_params)
+    if @user.save
+    payload = {user_id: @user.id}
+    token = encode(payload)
     render json: {
-      user: user,
-      scores: []
-    }
+      message: "Authenticated! You are logged in",
+      authenticated: true,
+      user: @user.login,
+      token: token
+    }, status: :accepted
+    end
+  end
+
+  def profile
+    byebug
+    token = request.headers["Authentication"].split(' ')[1]
+    payload = decode(token)
+    @user = User.find(payload["user_id"])
+    if @user
+      render json: @user.login
+    end
   end
 
   private

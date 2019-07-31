@@ -6,6 +6,7 @@ class ScoresController < ApplicationController
   end
 
   def create
+    byebug
     score = Score.create(score_params)
     render json: {
       score: score
@@ -19,4 +20,3 @@ class ScoresController < ApplicationController
   end
 
 end
-  

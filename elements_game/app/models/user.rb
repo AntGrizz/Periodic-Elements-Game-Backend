@@ -4,7 +4,8 @@ class User < ApplicationRecord
 
   def login
     {
-      username: self.username, first_name: self.first_name, last_name: self.last_name, scores: self.scores
+      user_id: self.id, username: self.username, first_name: self.first_name, last_name: self.last_name, scores: self.scores
     }
   end
+
 end
