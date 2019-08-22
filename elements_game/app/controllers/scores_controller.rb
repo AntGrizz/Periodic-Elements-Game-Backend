@@ -6,11 +6,15 @@ class ScoresController < ApplicationController
   end
 
   def create
-    byebug
-    score = Score.create(score_params)
+    @score = Score.create!(score_params)
+    if @score.save
+      token = request.headers["Authentication"].split(' ')[1]
+      payload = decode(token)
+      @user = User.find(payload["user_id"])
     render json: {
-      score: score
+      score: @score.newScore
     }
+  end
   end
 
   private
